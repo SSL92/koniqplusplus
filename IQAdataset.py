@@ -37,8 +37,8 @@ class IQADataset(Dataset):
                     mos = np.array(float(row['MOS'])).astype(np.float32)
                     mos_ori.append(mos)
 
-        csv_file = os.path.join(self.root, 'koniq10k_extend.csv')
-        # csv_file = os.path.join(self.root, 'koniq++database.csv')
+        # csv_file = os.path.join(self.root, 'koniq++_old.csv')
+        csv_file = os.path.join(self.root, 'koniq++database.csv')
         with open(csv_file) as f:
             reader = csv.DictReader(f)
             for row in reader:

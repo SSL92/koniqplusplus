@@ -26,7 +26,7 @@ class IQALoss(torch.nn.Module):
         weights = [1, 1/len_pred, 1/len_pred, 1/len_pred, 1/len_pred]
 
         for i in range(len_pred):
-            loss += self.loss_func(y_pred[:, i].view(-1, 1), y[:, i].view(-1, 1)) * weights[i]
+            loss += self.loss_func(y_pred[:, i].view(-1, 1), y[:, i].view(-1, 1)) * weights[i] * self.gamma
 
         return loss
 

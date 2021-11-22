@@ -1,6 +1,6 @@
 # KonIQ++: Boosting No-Reference Image Quality Assessment in the Wild by Jointly Predicting Image Quality and Defects
 
-Source code for the BMVC'21 oral "[KonIQ++: Boosting No-Reference Image Quality Assessment in the Wild by Jointly Predicting Image Quality and Defects]".
+Source code for the BMVC'21 oral "[KonIQ++: Boosting No-Reference Image Quality Assessment in the Wild by Jointly Predicting Image Quality and Defects](https://www.bmvc2021-virtualconference.com/assets/papers/0868.pdf)".
 
 The KonIQ++ database can be found [here](http://database.mmsp-kn.de/koniq-image-defects-database.html).
 

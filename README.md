@@ -32,7 +32,7 @@ If you want to cross test on either CLIVE or SPAQ dataset, add following options
 * `--test_on_spaq`: Add option to cross test on SPAQ dataset after training on KonIQ++. 
 * `--spaq_root 'YOUR OWN PATH'`: Root path for SPAQ dataset.
 
-Note: We have conducted user screenings to the released version KonIQ++ labels, so the results might have small fluctuations regarding to the reported performances. To perfectly reproduce performances in the paper, you can use the Kon++_old.csv label in the old_label folder as substitution.
+Note: We have conducted user screenings to the released version KonIQ++ labels, so the results might have small fluctuations regarding to the reported performances. To perfectly reproduce performances in the paper, you can use the Koniq++_old.csv label in the old_label folder as substitution.
 
 ### Predicting Single Image Quality and Visualizing 
 

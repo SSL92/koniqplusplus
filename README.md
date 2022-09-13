@@ -4,6 +4,8 @@ Source code for the BMVC'21 oral "[KonIQ++: Boosting No-Reference Image Quality 
 
 The KonIQ++ database can be found [here](http://database.mmsp-kn.de/koniq-image-defects-database.html).
 
+Our pretrained model can be found [here](https://drive.google.com/file/d/1NVFPPFM7n2P1i_LSw-F3JX2mn-Gn3PKw/view?usp=sharing).
+
 ## Installation
 
 Install dependencies

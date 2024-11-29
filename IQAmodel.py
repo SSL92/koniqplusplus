@@ -14,8 +14,8 @@ class Model_Joint(nn.Module):
         features = list(models.__dict__['resnext101_32x8d'](pretrained=True).children())[:-2]
         self.features = nn.Sequential(*features)
 
-        self.sidenet_q = SideNet(1)
-        self.sidenet_dist = SideNet(4)
+        self.sub_q = SideNet(1)
+        self.sub_dist = SideNet(4)
 
     def extract_features(self, x):
         f = []
@@ -52,8 +52,8 @@ class Model_Joint(nn.Module):
             else:
                 x = model(x)
 
-        dist_feature, dist = self.sidenet_dist(f)
-        q_feature, q = self.sidenet_q(f)
+        dist_feature, dist = self.sub_dist(f)
+        q_feature, q = self.sub_q(f)
 
         return dist_feature, q_feature, dist, q
 

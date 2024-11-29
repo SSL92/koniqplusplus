@@ -6,7 +6,6 @@ import random
 from argparse import ArgumentParser
 from torchvision.transforms.functional import resize, to_tensor, normalize
 from PIL import Image
-import h5py
 import cv2
 
 def run(args):
@@ -14,6 +13,9 @@ def run(args):
     model = Model_Joint(return_feature=True).to(device) if args.save_heatmap else Model_Joint().to(device)
 
     checkpoint = torch.load(args.trained_model_file)
+    # print(checkpoint)
+    # md = checkpoint['model']
+
     model.load_state_dict(checkpoint['model'])
     model.eval()
     k = checkpoint['k']
@@ -25,9 +27,10 @@ def run(args):
     im = to_tensor(im).to(device)
     im = normalize(im, [0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 
-    if args.save_heatmap is None:
-        q = model(im.unsqueeze(0))
-        print('The image quality score is {}'.format(q[-1].item() * k[-1] + b[-1]))
+    if not args.save_heatmap:
+        q = model(im.unsqueeze(0)).detach()
+        print('The image quality score is {}'.format(q[0][0].item() * k[0] + b[0]))
+        print('The degradation scores [artifacts, blur, contrast, color] are {}'.format(q[0][1:].tolist()))
 
     # save heatmaps for side network features, useful for analysis
     else:
@@ -144,10 +147,10 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    args.format_str = 'model-loss={}-p={}-q={}-detach-{}-ft_lr_ratio={}-alpha={}-{}-res={}-{}x{}-aug={}-monotonicity={}-lr={}-bs={}-e={}-opt_level={}' \
-        .format(args.loss_type, args.p, args.q, args.detach, args.ft_lr_ratio, args.alpha,
-                args.dataset, args.resize, args.resize_size_h, args.resize_size_w, args.augment,
-                args.monotonicity_regularization, args.lr, args.batch_size, args.epochs, args.opt_level)
-    args.trained_model_file = './checkpoints/' + args.format_str
+    # args.format_str = 'model-loss={}-p={}-q={}-detach-{}-ft_lr_ratio={}-alpha={}-{}-res={}-{}x{}-aug={}-monotonicity={}-lr={}-bs={}-e={}-opt_level={}' \
+    #     .format(args.loss_type, args.p, args.q, args.detach, args.ft_lr_ratio, args.alpha,
+    #             args.dataset, args.resize, args.resize_size_h, args.resize_size_w, args.augment,
+    #             args.monotonicity_regularization, args.lr, args.batch_size, args.epochs, args.opt_level)
+    args.trained_model_file = 'pretrained_model'
 
     run(args)
